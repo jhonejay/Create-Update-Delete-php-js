@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>Vehicle Registration</title>
+  <!-- Bootstrap core CSS-->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom fonts for this template-->
+  <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <!-- Custom styles for this template-->
+  <link href="css/sb-admin.css" rel="stylesheet">
+</head>
+
+<body class="bg-dark">
+  <div class="container">
+    <div class="card card-register mx-auto mt-5">
+      <div class="card-header">Vehicle Information</div>
+      <div class="card-body">
+        <form action="vehicleregistration.php" method="post">
+          <!--First Row of the form-->
+         
+          <div class="form-group">
+            <div class="form-row">
+              
+              <div class="col-md-3">
+                <label for="mvfile">MV File No.</label>
+                <input class="form-control" id="mvfile" name="mvfile" type="text" aria-describedby="nameHelp" placeholder="Enter MV File No.">
+              </div>
+
+              <div class="col-md-3">
+                <label for="plateno">Plate No.</label>
+                <input class="form-control" id="plateno" name="plateno" type="text" aria-describedby="nameHelp" placeholder="Enter Plate No.">
+              </div>
+
+              <div class="col-md-3">
+                <label for="engineno">Engine No.</label>
+                <input class="form-control" id="engineno" name="engineno" type="text" aria-describedby="nameHelp" placeholder="Enter Engine No.">
+              </div>
+
+              <div class="col-md-3">
+                <label for="chasisno">Chasis No.</label>
+                <input class="form-control" id="chasisno" name="chasisno" type="text" aria-describedby="nameHelp" placeholder="Enter Chasis No.">
+              </div>
+
+            </div>
+          </div>
+
+
+          <!--Second Row of the form-->
+          <div class="form-group">
+            <div class="form-row">
+              <div class="col-md-3">
+                <label for="denomination">Denomination</label>
+                <input class="form-control" id="denomination" name="denomination" type="text" aria-describedby="nameHelp" placeholder="Enter Denomination">
+            </div>
+            <div class="col-md-3">
+              <label for="pistondisplacement">Piston Displacement</label>
+                <input class="form-control" id="pistondisplacement" name="pistondisplacement" type="text" aria-describedby="nameHelp" placeholder="Enter Piston Displacement">
+            </div>
+            <div class="col-md-3">
+              <label for="noofcylinder">No. of Cylinder</label>
+                <input class="form-control" id="noofcylinder" name="noofcylinder" type="text" aria-describedby="nameHelp" placeholder="Enter No. of Cylinder">
+            </div>
+            <div class="col-md-3">
+              <label for="fuel">Fuel</label>
+              <input class="form-control" id="fuel" name="fuel" type="text" aria-describedby="nameHelp" placeholder="Enter Fuel Use">
+            </div>
+          </div>
+
+          <!--Third Row of the form--> 
+          <div class="form-group">
+            <div class="form-row">
+              <div class="col-md-3">
+                <label for="make">Make</label>
+                <input class="form-control" id="make" name="make" type="text" aria-describedby="nameHelp" placeholder="Enter Make">
+              </div>
+              <div class="col-md-3">
+                <label for="series">Series</label>
+                <input class="form-control" id="series" name="series" type="text" aria-describedby="nameHelp" placeholder="Enter Series">
+              </div>
+              <div class="col-md-3">
+                <label for="bodytype">Body Type</label>
+                <input class="form-control" id="bodytype" name="bodytype" type="text" aria-describedby="nameHelp" placeholder="Enter Body Type">
+              </div>
+              <div class="col-md-3">
+                <label for="bodyno">Body No.</label>
+                <input class="form-control" id="bodyno" name="bodyno" type="text" aria-describedby="nameHelp" placeholder="Enter Body No.">
+              </div>
+            </div>
+          </div> 
+
+          <!--Fourth Row of the form-->
+          <div class="form-group">
+            <div class="form-row">
+              <div class="col-md-2.1">
+                <label for="yearmodel">Year Model</label>
+                <input class="form-control" id="yearmodel" name="yearmodel" aria-describedby="nameHelp" placeholder="Enter Year Model ">
+              </div>
+              <div class="col-md-2.1">
+                <label for="grosswt">Gross Wt.</label>
+                <input class="form-control" id="grosswt" name="grosswt" type="text" aria-describedby="nameHelp" placeholder="Enter Gross Wt.">
+              </div>
+              <div class="col-md-2.1">
+                <label for="netwt">Net Wt.</label>
+                <input  class="form-control" id="netwt" name="netwt" type="text" aria-describedby="nameHelp" placeholder="Enter Net Wt.">
+              </div>
+              <div class="col-md-2.1">
+                <label for="shippingwt">Shipping Wt.</label>
+                <input  class="form-control" id="shippingwt" name="shippingwt" type="text" aria-describedby="nameHelp" placeholder="Enter Shipping Wt.">
+              </div>
+
+               <div class="col-md-2.1">
+                <label for="netcapacity">Net Capacity</label>
+                <input  class="form-control" id="netcapacity" name="netcapacity" type="text" aria-describedby="nameHelp" placeholder="Enter Net Capacity">
+              </div>
+
+            </div>
+          </div>
+
+          <!--Fifth Row of the form-->
+          <div class="form-group">
+            <div class="form-row">
+
+              <!-- <div class="col-md-3">
+                <label for="drive">DRIVE</label>
+                <select class="form-control" id="drive" name="drive" aria-describedby="nameHelp">
+                  <option value="Automatic">Automatic</option>
+                  <option value="Power">Power</option>
+                  <option value="Over">Over</option>
+                  <option value="Conventional">Conventional</option>
+                </select> 
+              </div> -->
+
+              <div class="col-md-6">
+                <label for="completename">Complete Owner's Name</label>
+                <input class="form-control" id="completename" name="completename" type="text" aria-describedby="nameHelp" placeholder="Enter Complete Owner's Name">
+              </div>
+              <div class="col-md-6">
+                <label for="telephoneno">Telephone No./ Contact Details</label>
+                <input class="form-control" id="telephoneno" name="telephoneno" type="text" aria-describedby="nameHelp" placeholder="Enter Telephone No./ Contact Details">
+              </div>
+
+              <!-- <div class="col-md-3">
+                <label for="maxlength">MAX LENGTH</label>
+                <input class="form-control" id="maxlength" name="maxlength" type="text" aria-describedby="nameHelp" placeholder="Enter Max Length">
+              </div> -->
+
+            </div>
+          </div>
+
+          <!--Seventh Row of the form-->
+          <div class="form-group">
+            <div class="form-row">
+              <div class="col-md-12">
+                <label for="completeaddress">Complete Address(No.Street City/Municipality Province)</label>
+                <input class="form-control" id="completeaddress" name="completeaddress" type="text" aria-describedby="nameHelp" placeholder="Enter Complete Address" width="100">
+              </div>
+              
+            </div>
+          </div>
+          
+
+         
+<center>
+          <input type="submit" name="submit" value="Register Now"">  
+        </center>
+        </form>
+        <!--End of Form-->
+      </div>
+    </div>
+  </div>
+  <!-- Bootstrap core JavaScript-->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- Core plugin JavaScript-->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+</body>
+
+</html>

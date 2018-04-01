@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>SB Admin - Start Bootstrap Template</title>
+  <!-- Bootstrap core CSS-->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom fonts for this template-->
+  <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <!-- Page level plugin CSS-->
+  <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+  <!-- Custom styles for this template-->
+  <link href="css/sb-admin.css" rel="stylesheet">
+
+
+
+</head>
+
+<body class="fixed-nav sticky-footer bg-dark" id="page-top">
+  <!-- Navigation-->
+
+  <div class="content-wrapper">
+    <div class="container-fluid">
+     
+      <!-- Breadcrumbs-->
+      <ol class="breadcrumb">
+        
+        <li class="breadcrumb-item">
+          <a href="#">Update</a>
+        </li>
+        <!-- <li class="breadcrumb-item active">Tables</li> -->
+      
+      </ol>
+     
+      <!-- Example DataTables Card-->
+      <div class="card mb-3">
+        <div class="card-header">
+          <i class="fa fa-table"></i> Data Table Example</div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+          
+              <thead>
+                <tr>
+                  <th>Id</th>
+                  <th>First Name</th>
+                  <th>Middle Name</th>
+                  <th>Last Name</th>
+                  
+                </tr>
+              </thead>
+
+              <tfoot>
+                <tr>
+                  <th>Id</th>
+                  <th>First Name</th>
+                  <th>Middle Name</th>
+                  <th>Last Name</th>
+
+                </tr>
+              </tfoot>
+              
+              <tbody id="dataBody">
+               
+              </tbody>
+            </table>
+
+          </div>
+        </div>
+        <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+      </div>
+      
+    </div>
+  
+    <!-- /.container-fluid-->
+    <!-- /.content-wrapper-->
+    <footer class="sticky-footer">
+      <div class="container">
+        <div class="text-center">
+        <!--   <small>Copyright © Your Website 2017</small> -->
+        </div>
+      </div>
+    </footer>
+    <!-- Scroll to Top Button-->
+   <!--  <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fa fa-angle-up"></i>
+    </a> -->
+    <!-- Logout Modal-->
+      <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog modal-lg">
+        
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+          <div class="modal-body">
+          <div class="container">
+    <div class="card card-register mx-auto mt-5">
+      <div class="card-header">CRUD INFORMATION</div>
+      <div class="card-body">
+        <form >
+          <!--First Row of the form-->
+         
+          <div class="form-group">
+            <div class="form-row">
+              <div class="col-md-3">
+                <label for="id">id</label>
+                <input class="form-control" id="id" name="id" type="text" aria-describedby="nameHelp" placeholder="id" disabled="true">
+              </div>
+              
+              <div class="col-md-3">
+                <label for="firstname">firstname</label>
+                <input class="form-control" id="firstname" name="firstname" type="text" aria-describedby="nameHelp" placeholder="firstname">
+              </div>
+
+              <div class="col-md-3">
+                <label for="middlename">middlename</label>
+                <input class="form-control" id="middlename"  name="middlename" type="text" aria-describedby="nameHelp" placeholder="middlename">
+              </div>
+
+              <div class="col-md-3">
+                <label for="lastname">lastname</label>
+                <input class="form-control" id="lastname"  name="lastname" type="text" aria-describedby="nameHelp" placeholder="lastname">
+              </div>
+
+              
+            </div>
+          </div>
+
+<center>
+          <button name = "edit" id = "edit">Update</button>
+
+          <button name="del" id="del">Delete </button>
+
+</center>
+
+        </form>
+        <!--End of Form-->
+      </div>
+    </div>
+  </div>
+
+
+          </div>
+          <div class="modal-footer">
+            <!-- <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button> -->
+            <!-- <a class="btn btn-primary" href="login.html">Logout</a> -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Page level plugin JavaScript-->
+    <script src="vendor/datatables/jquery.dataTables.js"></script>
+    <script src="vendor/datatables/dataTables.bootstrap4.js"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin.min.js"></script>
+    <!-- Custom scripts for this page-->
+    <script src="js/sb-admin-datatables.min.js"></script>
+
+  <script >
+    window.onload = function(){
+      loadTableOfVehicles();      
+    }
+
+    function loadTableOfVehicles()
+    {
+      //alert();
+        $.getJSON("getCrudInfoForTable.php", function(result){
+
+          var appendToTable = "";
+          //console.log(result);
+          for(var i=0 ; i < result.crudInfo.length ; i++)
+          {
+            //console.log(result.vehicles[i]);
+            appendToTable += "<tr>";
+            var myData = result.crudInfo[i];
+            console.log(myData);
+            appendToTable += "<td>"+myData.id+"</td>" + "<td>"+myData.first_name+"</td>" + "<td>"+myData.middle_name+"</td>" + "<td>"+myData.last_name+"</td>";
+            appendToTable += "</tr>";
+          }
+          $("#dataBody").html(appendToTable);
+          //$('#exampleModal').modal('show');  
+        });
+    }
+
+
+    //ajax sa delete
+    $('#del').on('click',function(){
+
+              $.ajax({
+                  //dataType: 'json',
+                  url: "deleteCrudinfo.php?id=" +$('#id').val()+"",
+              }).done(function(response){
+                 console.log(response);
+                 loadTableOfVehicles();
+              });
+     
+    });
+    
+       //ajax sa edit
+    $('#edit').on('click',function(){
+
+              $.ajax({
+                  //dataType: 'json',
+                  url: "editCrudinfo.php?id="+$('#id').val()+"&firstname="+$('#firstname').val()+"&middlename="+$('#middlename').val()+"&lastname="+$('#lastname').val()+"",
+              }).done(function(response){
+                 console.log(response);
+                 loadTableOfVehicles();
+              });
+     
+    });
+    
+
+    
+      $('#dataTable').on('click', 'tr', function() {
+
+              //alert();
+              var td = this.cells[0];  // the first <td>
+              console.log( $(td).text() );
+              //console.log(td);
+
+              $.getJSON("findCrudById.php?id=" +$(td).text()+"", function(result){
+                //console.log(result);
+                var myData = result.crudInfo;
+                console.log(myData);
+                $('#myModal').modal('show');
+                 $('#id').val(myData.id);
+                $('#firstname').val(myData.first_name);
+                $('#middlename').val(myData.middle_name);
+                $('#lastname').val(myData.last_name);
+
+              });
+
+      });
+  </script>
+
+ </div>
+</body>
+
+</html>

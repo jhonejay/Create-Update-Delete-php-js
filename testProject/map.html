@@ -1,0 +1,107 @@
+<html>
+	<head>
+		<link href="leaflet.css" type="text/css" rel="stylesheet">
+		<script src="jquery-3.2.1.min.js"></script>
+		<script src="leaflet.js"></script>
+		<script src="leaflet.geometryutil.js"></script>
+    <script src="streetLines.js"></script>
+	</head>
+	<body>
+	<div>	
+		<div id="map" style="height:100%; width: 100%"></div>
+		<script>
+
+			var map = L.map('map').setView([10.308731097486637, 123.89966189861296], 14);
+			map.options.minZoom = 14;
+			L.tileLayer('Mapnik/{z}/{x}/{y}.png', {
+			    maxZoom: 19
+			}).addTo(map);
+
+			var markers = new L.FeatureGroup();
+			var myLines = L.geoJSON(streetLines).addTo(map);
+
+			var myX = 0;
+			var myY = 0;
+			var isInside = function (point, vs) {
+			    // ray-casting algorithm based on
+			    // http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html
+			    
+			    var x = point[0], y = point[1];
+			    
+			    var inside = false;
+			    for (var i = 0, j = vs.length - 1; i < vs.length; j = i++) {
+			        var xi = vs[i][0], yi = vs[i][1];
+			        var xj = vs[j][0], yj = vs[j][1];
+			        
+			        var intersect = ((yi > y) != (yj > y))
+			            && (x < (xj - xi) * (y - yi) / (yj - yi) + xi);
+			        if (intersect) inside = !inside;
+			    }
+			    
+			    return inside;
+			};	
+			//http://{s}.tile.osm.org/{z}/{x}/{y}.png  para sa online
+			//testMaps2/Mapnik/{z}/{x}/{y}.png   L.tileLaye ni siya
+			//C:/Users/Jhone Jay/Desktop/myProjectDesign/myMaps/{z}/{x}/{y}.png
+			
+			function loopMyMapDetails()
+			{
+				//map.removeLayer(markers);
+				var arrayOfLines = myLines.toGeoJSON();
+				var arrayOfLinesForChecking = [];
+				$.each(arrayOfLines.features,function(i, field){
+
+		        	arrayOfLinesForChecking.push(field.geometry.coordinates[0]);
+
+		        });
+
+				$.getJSON("getVehicle.php", function(result){
+					
+					for(var i=0 ; i < result.vehicles.length ; i++)
+					{
+						//console.log(result.vehicles[i]);
+						myX = result.vehicles[i].x;
+						myY = result.vehicles[i].y;
+						myId = result.vehicles[i].id;
+						myPlate_number = result.vehicles[i].plate_number;
+						myName = result.vehicles[i].Owner_Name; 
+
+
+						var nMarkers = L.marker([result.vehicles[i].y, result.vehicles[i].x])
+						   .bindPopup('customizable pop-ups')
+						   // .bindPopup("Vehicle : " + result.vehicles[i].id)
+						   .bindPopup("Information : " + result.vehicles[i].Owner_Name);
+						   //.openPopup();
+
+						//console.log(L.GeometryUtil.closest());
+						//});  
+						//console.log(arrayOfLinesForChecking.length);
+						markers.addLayer(nMarkers);
+						for(var j=0 ; j < arrayOfLinesForChecking.length ; j++)
+						{
+							
+							//function for sending to nearest target 
+
+							if(isInside([myX,myY],arrayOfLinesForChecking[j]))
+								console.log("Information : " + myName);
+						}
+					}
+
+		        
+		        });
+		        //getAllMarkers();
+		        map.addLayer(markers);
+				console.log("function has looped");
+		        setTimeout(loopMyMapDetails,5000);
+
+			}
+			
+			loopMyMapDetails();
+
+			
+
+		</script>
+		</div>
+	</body>	
+</html>
+
